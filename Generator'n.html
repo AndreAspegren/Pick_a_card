@@ -73,7 +73,10 @@
                     
                 } else cards[i] = `<div onclick="turncard(${i})">` + eastercards[i].image + `</div>`    
         }
-        app.innerHTML = `<div class="grid">${cards.join('')}` + /*HTML*/`
+        
+        app.innerHTML = `<div class="grid">${cards.join('')}` + 
+            
+            /*HTML*/`
             <div class="frontofcard"><div>Legg til kort:</div>
                 <div>Mottaker:</div><input onchange="newcardinfo.receiver = this.value">
                 <div>Sender:</div><input onchange="newcardinfo.sender = this.value">
