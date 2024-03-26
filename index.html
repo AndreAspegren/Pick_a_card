@@ -24,6 +24,7 @@
         }
         body{
             background-image: url('');
+            
         }
     </style>
 </head>
@@ -72,12 +73,12 @@
         for (let i = 0; i < eastercards.length; i++){
             if (orientation[i] == 'front'){
                 cards[i] =
-                    /*HTML*/`<div class="frontofcard" onclick="turncard(${i})">
+                    /*HTML*/`<div class="frontofcard" onclick="orientation[${i}] = 'back'; updateview()">
                         <div>Avsender: ${eastercards[i].sender}</div>
                         <div>Mottaker: ${eastercards[i].receiver}</div>
                     <div>Melding: ${eastercards[i].content}</div></div>`
                     
-                } else cards[i] = `<div onclick="turncard(${i})">` + eastercards[i].image + `</div>`    
+                } else cards[i] = `<div onclick="orientation[${i}] = 'front'; updateview()">` + eastercards[i].image + `</div>`    
         }
         
         app.innerHTML = `<div class="grid">${cards.join('')}` + 
@@ -112,12 +113,6 @@
             updateview()    
         } else alert('Du må fylle inn feltene før du kan generere!')
 }
-
-    function turncard(index){
-        if (orientation[index] == 'front') orientation[index] = 'back'  
-        else orientation[index] = 'front'
-        updateview()
-    }
     </script>
 </body>
 </html>
