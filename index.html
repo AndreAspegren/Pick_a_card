@@ -33,12 +33,14 @@
     let cards = []
     let orientation = ['front', 'front', 'front']
     const app = document.getElementById('app')
+
     let = newcardinfo = {
         receiver: '',
         sender: '',
         content: '',
         image: '',
     }
+    
     let eastercards = [
         {
             sender: 'Easter bunny',
@@ -87,7 +89,7 @@
     }
 
     function gencard(){
-        let allfilled = true;
+        let allfilled = true
     for (let key in newcardinfo) {
         if (newcardinfo[key] == '') {
             allfilled = false
