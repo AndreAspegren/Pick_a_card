@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generator’n</title>
-
     <style>
         .grid{
             display: grid; 
@@ -23,6 +22,9 @@
             width: 20vh;
             height: 20vh;
         }
+        body{
+            background-image: url('');
+        }
     </style>
 </head>
 <body>
@@ -33,6 +35,7 @@
     let cards = []
     let orientation = []
     const app = document.getElementById('app')
+    
 
     let = newcardinfo = {
         receiver: '',
@@ -63,9 +66,9 @@
     ]
 
 
+    for (let i = 0; i < eastercards.length; i++) orientation.push('front')
     updateview()
     function updateview(){
-        for (let i = 0; i < eastercards.length; i++) orientation.push('front')
         for (let i = 0; i < eastercards.length; i++){
             if (orientation[i] == 'front'){
                 cards[i] =
