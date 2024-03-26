@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator’n</title>
+
+    <style>
+        .grid{
+            display: grid; 
+            grid-template-columns: repeat(5, 1fr);
+            position: fixed;
+            top: 10%;
+            left: 10%;
+            gap: 2vh
+        }
+        .frontofcard{
+            width: 20vh;
+            height: 20vh;
+            border: 2px solid black
+        }
+        img{
+            width: 20vh;
+            height: 20vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+    
+    let cards = []
+    let orientation = ['front', 'front', 'front']
+    const app = document.getElementById('app')
+    let = newcardinfo = {
+        receiver: '',
+        sender: '',
+        content: '',
+        image: '',
+    }
+    let eastercards = [
+        {
+            sender: 'Easter bunny',
+            receiver: 'Påskeharen',
+            content: 'God påske',
+            image: '<img src="https://parade.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTkwNTgwODM0ODIyMjY4MDI5/easter-bunny-tracker.jpg">'
+        },
+        {
+            sender: 'Mr Potethode',
+            receiver: 'Get Academy',
+            content: 'God påske',
+            image: '<img src="https://facts.net/wp-content/uploads/2023/09/25-facts-about-mr-potato-head-toy-story-1694064110.jpg">'
+        },
+        {
+            sender: 'Jesus',
+            receiver: 'Get Academy',
+            content: 'God påske',
+            image: '<img src="https://preview.redd.it/jesus-hatching-out-of-a-colorful-easter-egg-classical-v0-bz2415vh8a1c1.jpg?width=1024&format=pjpg&auto=webp&s=95184be9cd3a78b057eb399bda90229046038f77">'
+        },
+    ]
+
+
+    updateview()
+    function updateview(){
+        for (let i = 0; i < eastercards.length; i++){
+            if (orientation[i] == 'front'){
+                cards[i] =
+                    /*HTML*/`<div class="frontofcard" onclick="turncard(${i})">
+                        <div>Avsender: ${eastercards[i].sender}</div>
+                        <div>Mottaker: ${eastercards[i].receiver}</div>
+                    <div>Melding: ${eastercards[i].content}</div></div>`
+                    
+                } else cards[i] = `<div onclick="turncard(${i})">` + eastercards[i].image + `</div>`    
+        }
+        app.innerHTML = `<div class="grid">${cards.join('')}` + /*HTML*/`
+            <div class="frontofcard"><div>Legg til kort:</div>
+                <div>Mottaker:</div><input onchange="newcardinfo.receiver = this.value">
+                <div>Sender:</div><input onchange="newcardinfo.sender = this.value">
+                <div>Melding:</div><input onchange="newcardinfo.content = this.value">
+                <div>Bildeadresse:</div><input onchange="newcardinfo.image = this.value">
+                <button onclick="gencard()">Generer kort</button>
+                </div>` + '</div>' 
+    }
+
+    function gencard(){
+        let allfilled = true;
+    for (let key in newcardinfo) {
+        if (newcardinfo[key] == '') {
+            allfilled = false
+            break
+        }
+        }
+        if (allfilled){
+            orientation.push('front')
+            eastercards.push({
+                receiver: newcardinfo.receiver,
+                sender: newcardinfo.sender,
+                content: newcardinfo.content,
+                image: `<img src="${newcardinfo.image}">`,
+            })
+            for (let key in newcardinfo) newcardinfo[key] = ''
+            updateview()    
+        } else alert('Du må fylle inn feltene før du kan generere!')
+}
+
+    function turncard(index){
+        if (orientation[index] == 'front') orientation[index] = 'back'  
+        else orientation[index] = 'front'
+        updateview()
+    }
+    </script>
+</body>
+</html>
